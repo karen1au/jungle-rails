@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Thanks you for your order <%= @order.email %>!</h1>
+    <p>
+      Your order is being processed. Here are the details for order# <%= @order.id %>:
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Unit Price</th>
+          <th>Quantity</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @order.line_items.each do |item| %>
+          <%= render 'item', product: Product.find(item[:product_id]), quantity: item[:quantity].to_i %>
+        <% end %>
+      </tbody>
+      <tfoot>
+        <tr>
+          <th>
+            TOTAL:
+          </th>
+          <th>
+            <%= @order.total_cents / 100.0 %>
+          </th>
+        </tr>
+      </tfoot>
+    </table>
+    <h4>Exchange & Returns</h4>
+    <p>You can return an item to any store, or through Canada Post—free of charge—within 30 days of the date your order is fulfilled.
+</p>
+  </body>
+</html>
