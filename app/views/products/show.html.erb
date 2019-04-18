@@ -25,19 +25,15 @@
         </dl>
       </div>
 
-        <div class="reviews">
+        <div class="col-sm-8">
         <h3>Reviews</h3>
-        <dl>
           <% @product.reviews.each do |r| %>
-            <dt>Reviewer</dt>
-            <dd><%= User.find(r.user_id).first_name %></dd>
-            <dt>Description</dt>
-            <dd><%= r.description %></dd>
-            <dt>Rating</dt>
-            <dd><%= r.rating %></dd>
+        <div style="border: 1px solid black; margin-bottom: 1em">
+            <h5><%= User.find(r.user_id).first_name %></h5>
+            <p><%= r.description %></p>
+            <h5>Rating: <%= r.rating %></h5>
+            </div>
             <% end %>
-          </dl>
-        </div>
     </div>
 
   </article>
