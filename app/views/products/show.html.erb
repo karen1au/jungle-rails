@@ -27,9 +27,9 @@
 
 <!--review form !-->
     <div class="col-sm-6 col-sm-offset-1">
+      <h3>Reviews</h3>
+      <div class="review-form">
       <%= form_for [ @product, @product.reviews.build ] do |form| %>
-
-
         <div class="form-group">
           <%= form.label :description %>
           <%= form.text_area :description, class: 'form-control' %>
@@ -42,28 +42,27 @@
                           { include_blank: true }, 
                           class: 'form-control' %>
         </div>
-
         <%= form.submit 'Submit', class: 'btn btn-primary' %>
       <% end %>
-
-<!--all reviews !-->
-        <div class="col-sm-8">
-        <h3>Reviews</h3>
-          <% @reviews.each do |r| %>
-        <div class="rounded border border-primary">
-            <h5><%= User.find(r.user_id).first_name%></h5>
-            <p><%= r.description %></p>
-            <h5>Rating: <%= r.rating %></h5>
-            <% if User.find(r.user_id) == current_user %>
-            <%= link_to 'Delete', [r.product, r], method: :delete, class: 'btn btn-danger btn-sm' %>
-            <% end %>
-        </div>
-            <% end %>
-        </div>
-
-
-
       </div>
+<!--all reviews !-->
+      <div class="review-list">
+          <% @reviews.each do |r| %>
+          <div class="reviews-container">
+            <span><%= User.find(r.user_id).first_name%> <%= User.find(r.user_id).last_name%></span>
+            <span class="rating">
+            <% (r.rating).times do%>
+            <%=fa_icon "star"%>
+            <% end %>
+            </span>
+            <% if User.find(r.user_id) == current_user %>
+            <%= link_to 'Delete', [r.product, r], method: :delete, class: 'btn btn-danger btn-sm delete-btn' %>
+            <% end %>
+            <p class="description"><%= r.description %></p>
+          </div>
+          <% end %>
+      </div>
+        </div>
     </div>
   </article>
 

@@ -83,6 +83,29 @@ main section.products-show {
       max-width: 100%;
     }
   }
+
 }
 
 
+
+.reviews-container {
+
+  margin: 1em 0 1em 0;
+
+  span {
+    font-weight: bold;
+  }
+
+  .delete-btn {
+    // float: right;
+    display: inline;
+  }
+  
+  p {
+    width: fit-content
+  }
+}
+
+.rating {
+  color: #f4b642;
+}
