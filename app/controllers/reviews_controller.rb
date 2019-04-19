@@ -27,7 +27,7 @@ class ReviewsController < ApplicationController
 
   def login?
     unless current_user
-      redirect_to :back
+      redirect_to new_session_path
     end
   end
 end

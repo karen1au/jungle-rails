@@ -37,7 +37,10 @@
 
         <div class="form-group">
           <%= form.label :rating %>
-          <%= form.select :rating, options_for_select([1, 2, 3, 4, 5]), { include_blank: true }, class: 'form-control' %>
+          <%= form.select :rating, 
+                          options_for_select([1, 2, 3, 4, 5]),
+                          { include_blank: true }, 
+                          class: 'form-control' %>
         </div>
 
         <%= form.submit 'Submit', class: 'btn btn-primary' %>
@@ -47,12 +50,12 @@
         <div class="col-sm-8">
         <h3>Reviews</h3>
           <% @reviews.each do |r| %>
-        <div style="border: 1px solid black; margin-bottom: 1em">
+        <div class="rounded border border-primary">
             <h5><%= User.find(r.user_id).first_name%></h5>
             <p><%= r.description %></p>
             <h5>Rating: <%= r.rating %></h5>
             <% if User.find(r.user_id) == current_user %>
-            <%= link_to 'Delete', [r.product, r], method: :delete, class: 'btn btn-danger' %>
+            <%= link_to 'Delete', [r.product, r], method: :delete, class: 'btn btn-danger btn-sm' %>
             <% end %>
         </div>
             <% end %>
