@@ -1,14 +1,17 @@
 class ReviewsController < ApplicationController
+  before_filter :login?
 
   def create
     @product = Product.find(params[:product_id])
     @review = make_review
     redirect_to product_path(@product)
-    # if @review.save
-    #   redirect_to :back
-    # else
-    #   redirect_to '/'
-    # end
+  end
+
+  def destroy
+    @product = Product.find(params[:product_id])
+    @review = @product.reviews.find(params[:id])
+    @review.destroy
+    redirect_to product_path(@product)
   end
 
   private
@@ -22,12 +25,9 @@ class ReviewsController < ApplicationController
     review
   end
 
-  # def review_params 
-  #   params.require(:review).permit(
-  #     :rating,
-  #     :description
-  #   )
-  # end
-
-
+  def login?
+    unless current_user
+      redirect_to :back
+    end
+  end
 end
