@@ -22,6 +22,18 @@
           <dd><%= @product.quantity %></dd>
           <dt>Price</dt>
           <dd><%= @product.price %></dd>
+          <dt>Rating</dt>
+          <dd>
+            <% if @product.reviews.size > 0 %>
+            <span class="rating">
+            <% (@product.reviews.average(:rating).ceil).times do%>
+            <%=fa_icon "star"%>
+            <% end %>
+            <% else %>
+            <span>-</span>
+            <% end %>
+            </span>
+          </dd>
         </dl>
       </div>
 
