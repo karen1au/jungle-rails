@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   subject {
-    User.new(first_name: "Dummy", last_name: "Test", email: "dummy@gmail.com", password: "12345678", password_confirmation: "12345678")
+    User.new(first_name: "Dummy", last_name: "Test", email: "duMmy@gmail.com", password: "12345678", password_confirmation: "12345678")
   }
   describe 'Validations' do
     it 'is not valid when password confirmation do not match' do
@@ -11,7 +11,7 @@ RSpec.describe User, type: :model do
     end
 
     it 'is not valid when email already exists' do
-      test1 = User.new(first_name: "Tom", last_name: "Test", email: "dummy@gmail.com", password: "12345678", password_confirmation: "12345678")
+      test1 = User.new(first_name: "Tom", last_name: "Test", email: "duMmy@gmail.com", password: "12345678", password_confirmation: "12345678")
       test1.save
       subject.email = "duMmy@gmail.com"
       expect(subject).to_not be_valid
@@ -36,7 +36,14 @@ RSpec.describe User, type: :model do
     it 'can login when user input extra space in front or end' do
       test1 = subject
       test1.save
-      @user = User.authenticate_with_credentials("  dummy@gmail.com   ", "12345678")
+      @user = User.authenticate_with_credentials(" duMmy@gmail.com   ", "12345678")
+      expect(@user).to be_an_instance_of(User) 
+    end
+
+    it 'can login when user input with different casing' do
+      test1 = subject
+      test1.save
+      @user = User.authenticate_with_credentials("Dummy@Gmail.com", "12345678")
       expect(@user).to be_an_instance_of(User) 
     end
     
