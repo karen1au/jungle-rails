@@ -35,19 +35,15 @@ RSpec.describe Order, type: :model do
       @order.save!
       @order.line_items.each do |entry|
         entry.product.decrement!(:quantity,entry.quantity)
+        entry.product.reload
       end
-      # @product1.decrement!(:quantity,@order.line_items.find_by_product_id(@product1.id).quantity)
-      # @product2.decrement!(:quantity,@order.line_items.find_by_product_id(@product2.id).quantity)
-      # 4. reload products to have their updated quantities
-      @product1.reload
-      @product2.reload
-      byebug
       # 5. use RSpec expect syntax to assert their new quantity values
       expect(@product1.quantity).to eql(1)
       expect(@product2.quantity).to eql(0)
     end
     # pending test 2
-    xit 'does not deduct quantity from products that are not in the order' do
+    it 'does not deduct quantity from products that are not in the order' do
+      expect(@product3.quantity).to eql(4)
       # TODO: Implement based on hints in previous test
     end
   end

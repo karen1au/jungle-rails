@@ -53,6 +53,10 @@ class OrdersController < ApplicationController
       )
     end
     order.save!
+    order.line_items.each do |entry|
+      entry.product.decrement!(:quantity,entry.quantity)
+      entry.product.reload
+    end
     OrderMailer.order_email(order).deliver_later
     order
   end
