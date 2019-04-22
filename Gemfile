@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 ruby "~> 2.3.0"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -58,4 +58,8 @@ end
 group :production do
   gem 'newrelic_rpm'
   gem 'rails_12factor'
+end
+
+group :test do
+  gem 'database_cleaner'
 end
