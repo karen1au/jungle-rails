@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Product, type: :model do
   describe 'Validations' do
     subject {
-    Product.new(name: "hotdog", price_cents: 1234, quantity: 3, category: Category.new(name: "Furniture"))
+    Product.new(name: "hotdog", price: 1234, quantity: 3, category: Category.new(name:"Furniture"))
   }
     it 'is valid with valid attributes' do
       expect(subject).to be_valid
@@ -27,6 +27,8 @@ RSpec.describe Product, type: :model do
     it 'is not valid without a category' do
       subject.category = nil
       expect(subject).to_not be_valid
+
+      # puts subject.errors.full_messages
     end
 
   end
