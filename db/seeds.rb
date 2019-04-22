@@ -133,6 +133,9 @@ cat3.products.create!({
 })
 
 ## Users
+puts "RE-create USers"
+User.destroy_all 
+
 user1 = User.create!({
   first_name: 'Bob',
   last_name: 'Smith',
@@ -145,13 +148,17 @@ user2 = User.create!({
   email: "mary@gmail.com",
   password_digest: "123"
 })
+
+Review.destroy_all
+puts "Recreate Reviews...."
+
 user1.reviews.create!({
-  product_id: 1,
+  product_id: Product.first.id,
   description: "nice material",
   rating: 4
 })
 user2.reviews.create!({
-  product_id: 2,
+  product_id: Product.first.id,
   description: "not recommended",
   rating: 2
 })
