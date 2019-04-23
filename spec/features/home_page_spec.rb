@@ -21,7 +21,7 @@ RSpec.feature "HomePages", type: :feature, js: true do
     visit root_path
 
     # DEBUG / VERIFY
-    save_screenshot
+    # save_screenshot
     expect(page).to have_css 'article.product', count: 10
   end
 end
