@@ -24,10 +24,10 @@ For admin of Jungle, managing products and categories is a breeze!
 
 1. Fork & Clone
 2. Run `bundle install` to install dependencies
-5. Run `bin/rake db:reset` to create, load and seed db
-7. Sign up for a Stripe account
-8. Put Stripe (test) keys into appropriate .env vars
-9. Run `bin/rails s -b 0.0.0.0` to start the server
+3. Run `bin/rake db:reset` to create, load and seed db
+4. Sign up for a Stripe account
+5. Put Stripe (test) keys into appropriate .env vars
+6. Run `bin/rails s -b 0.0.0.0` to start the server
 
 ## Stripe Testing
 
